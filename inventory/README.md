@@ -74,4 +74,11 @@ $ ansible-playbook -i ~/iac-iith-newslab-5g-testbed/inventory/hosts.yml -e 'targ
 ```
 </pre>
 
+To setup a test VM which gets IP address from MAAS
+<pre>
+```
+$ ansible-playbook -i ~/iac-iith-newslab-5g-testbed/inventory/hosts.yml -e 'target_host=nfvsrv1' -e '{"vms_to_provision": ["testvm1"]}' playbooks/setup_vms.yml
+```
+</pre>
+
 
