@@ -1,0 +1,32 @@
+container_name: natrtr
+image_alias: images:debian/12/cloud
+lxd_profile: nat-router-profile
+user_name: owner
+ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+interfaces:
+  - name: enp1s0
+    parent: br-wan
+    mode: dhcp
+  - name: enp2s0
+    parent: br-isl
+    mode: static
+    address: 198.19.255.50/24
+
+packages:
+  - openssh-server
+
+wan_iface: enp1s0
+wan_ip: "198.18.1.98"
+wan_cidr: 24
+
+lan_interfaces:
+  - iface: enp2s0
+    ip: "198.19.255.50"
+    cidr: 24
+    routes:
+    - { to: "198.18.0.0/24", via: "198.19.255.1" }
+    - { to: "198.18.1.0/24", via: "198.19.255.1" }
+
+nft_rules_path: /etc/nftables.conf
+

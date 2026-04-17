@@ -1,0 +1,24 @@
+vm_name: maas-regctrl
+vm_ram: 6144
+vm_image: /var/lib/libvirt/images/noble-server-cloudimg-amd64.img
+vm_disk1_size: 128 # in GB
+vm_interfaces:
+  - type: bridge
+    source: br-wan
+  - type: bridge
+    source: br-noc
+vm_definition: vm-definition.xml.j2
+machine_type: q35
+user_name: owner
+ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+interfaces:
+  - name: enp1s0
+    mode: dhcp
+  - name: enp2s0
+    mode: static
+    address: 192.0.2.27/24
+    routes:
+      - to: 198.18.0.0/15
+        via: 192.0.2.1
+

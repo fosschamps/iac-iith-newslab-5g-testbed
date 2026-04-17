@@ -1,0 +1,19 @@
+container_name: maas-rackctrl
+image_alias: ubuntu:24.04
+lxd_profile: rack-controller-profile
+user_name: owner
+ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+interfaces:
+  - name: eth0
+    parent: br-lan
+    mode: static
+    address: 198.18.0.27/24
+    routes:
+    - to: "0.0.0.0/0"
+      via: "198.18.0.1"
+    dns:
+    - 192.0.2.6
+
+maas_regctrl_url: "http://10.9.69.190:5240/MAAS"
+maas_rackctrl_registration_secret:  "c3dfc3da474fa0f9fb4b9b8ea3c54737"
