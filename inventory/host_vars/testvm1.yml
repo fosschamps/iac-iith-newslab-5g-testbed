@@ -1,0 +1,15 @@
+vm_name: testvm1
+vm_image: /var/lib/libvirt/images/debian-12-generic-amd64-20260210-2384.qcow2
+vm_disk1_size: 8 # in GB
+vm_interfaces:
+  - type: bridge
+    source: br-lan
+vm_definition: vm-definition.xml.j2
+machine_type: q35
+user_name: owner
+ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+interfaces:
+  - name: enp1s0
+    mode: dhcp
+
