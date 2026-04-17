@@ -1,13 +1,13 @@
 To setup ethernet interfaces, vlan interfaces, bridge interfaces on the workstation
 <pre>
 ```
-$ ansible-playbook -i ~/iac-iith-newslab-5g-testbed/inventory/hosts.yml -e 'ansible_ssh_common_args="-o ProxyJump=maruthisi@10.9.64.176"' -e "target_host=nfvsrv1" playbooks/setup_ethernets.yml
+$ ansible-playbook -i ~/iac-iith-newslab-5g-testbed/inventory/hosts.yml -e "target_host=nfvsrv1" playbooks/setup_ethernets.yml
 ```
 </pre>
 
 <pre>
 ```
-$ ansible-playbook -i ~/iac-iith-newslab-5g-testbed/inventory/hosts.yml -e 'ansible_ssh_common_args="-o ProxyJump=maruthisi@10.9.64.176"' -e "target_host=nfvsrv1" playbooks/setup_bridges.yml
+$ ansible-playbook -i ~/iac-iith-newslab-5g-testbed/inventory/hosts.yml -e "target_host=nfvsrv1" playbooks/setup_bridges.yml
 ```
 </pre>
 
@@ -34,7 +34,7 @@ $ ansible-playbook -i ~/iac-iith-newslab-5g-testbed/inventory/hosts.yml -e 'ansi
 
 <pre>
 ```
-$ ansible-playbook -i ~/iac-iith-newslab-5g-testbed/inventory/hosts.yml -e 'target_host="corertr"' -e 'ansible_ssh_common_args="-o ProxyJump=maruthisi@10.9.64.176"' playbooks/setup_core_router_using_linux_kernel.yml
+$ ansible-playbook -i ~/iac-iith-newslab-5g-testbed/inventory/hosts.yml -e 'target_host="coresw"' -e 'ansible_ssh_common_args="-o ProxyJump=maruthisi@10.9.64.176"' playbooks/setup_core_router_using_linux_kernel.yml
 ```
 </pre>
 
